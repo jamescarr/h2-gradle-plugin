@@ -24,3 +24,22 @@ if(!System.getProperty("release")){
 task wrapper(type: Wrapper) {
     gradleVersion = '1.0-rc-3'
 }
+
+task writeNewPom << {
+	pom {
+		project {
+			inceptionYear '2012'
+			licenses {
+				license {
+					name 'The Apache Software License, Version 2.0'
+					url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+					distribution 'repo'
+				}
+			}
+		}
+	}.writeTo("$buildDir/libs/${project.name}-${version}.xml")
+}
+
+build.doLast {
+	writeNewPom.execute()
+}
