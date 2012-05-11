@@ -1,0 +1,21 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+repositories { 
+	maven { 
+		mavenCentral()
+	}
+}
+
+dependencies {
+	groovy "org.codehaus.groovy:groovy-all:1.8.5"
+	
+	compile gradleApi()
+	compile 'com.h2database:h2:1.3.164'
+	
+	testCompile 'junit:junit:4.10'
+}
+
+if(!System.getProperty("release")){
+	version = "${version}-SNAPSHOT"
+}
