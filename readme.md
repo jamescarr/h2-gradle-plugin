@@ -2,21 +2,49 @@
 
 ![H2 Logo](http://www.h2database.com/html/images/h2-logo.png)
 
-[![Build Status](https://secure.travis-ci.org/CARFAX/h2-gradle-plugin.png?branch=master)](http://travis-ci.org/CARFAX/h2-gradle-plugin)
+[![Build Status](https://secure.travis-ci.org/jamescarr/h2-gradle-plugin.png?branch=master)](http://travis-ci.org/jamescarr/h2-gradle-plugin)
 
 This plugin provides the capability of running and populating an embedded H2 database as part of a gradle build,
 perfect for integration testing with embedded web containers.
 
 ## Usage
 
+To use the h2 plugin, include your in buildscript:
+
 ```groovy
 apply plugin: 'h2'
+
+```
+
+The plugin jars need to be defined in the classpath of your buildscript. You can either get the plugin jar and pom
+from the github download section or upload it to your own repository. Here's how you'd include it if resolving
+against github directly.
+
+```groovy
+
+buildscript {
+    repositories {
+        add(new org.apache.ivy.plugins.resolver.URLResolver()) {
+            name = 'GitHub'
+            addArtifactPattern 'http://cloud.github.com/downloads/[organisation]/[module]/[module]-[revision].[ext]'
+        }
+    }
+
+    dependencies {
+        classpath 'jamescarr:h2-gradle-plugin:0.8.0'
+    }
+}
+
+```
+### Defining h2 configuration and database named 'example'
+
+```groovy
 
 h2 {
 	tcpPort = 9092
 	webPort = 8082
 	
-	databaseName {
+	example {
 		scripts = [
 		     'src/test/resources/cars.sql'
 		   , 'src/test/resources/init-data.sql'
