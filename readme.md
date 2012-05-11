@@ -32,6 +32,7 @@ buildscript {
 
     dependencies {
         classpath 'jamescarr:h2-gradle-plugin:0.8.0'
+        classpath 'com.h2database:h2:1.3.164'  // choose your own version
     }
 }
 
@@ -85,13 +86,17 @@ h2 {
 ### Using with jettyRun
 
 ```groovy
-jettyRun.doFirst << h2start
+jettyRun.doFirst {
+  h2start.execute()
+}
 
 ```
 
 ### Using with tomcatRun
 
 ```groovy
-tomcatRun.doFirst << h2start
+tomcatRun.doFirst {
+  h2start.execute()
+}
 
 ```
