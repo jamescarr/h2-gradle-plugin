@@ -1,4 +1,4 @@
 language: groovy
 install: gradle clean build
 notifications:
-  email: false
+  email: true
