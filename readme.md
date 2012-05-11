@@ -2,7 +2,7 @@
 
 ![H2 Logo](http://www.h2database.com/html/images/h2-logo.png)
 
-[![Build Status](https://secure.travis-ci.org/CARFAX/h2-gradle-plugin.png?branch=master)](http://travis-ci.org/CARFAX/h2-gradle-plugin)
+[![Build Status](https://secure.travis-ci.org/jamescarr/h2-gradle-plugin.png?branch=master)](http://travis-ci.org/CARFAX/h2-gradle-plugin)
 
 This plugin provides the capability of running and populating an embedded H2 database as part of a gradle build,
 perfect for integration testing with embedded web containers.
