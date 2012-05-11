@@ -49,7 +49,7 @@ h2 {
 	}
 }
 
-``
+```
 
 
 ### Using with jettyRun
