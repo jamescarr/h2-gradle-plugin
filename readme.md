@@ -22,7 +22,7 @@ h2 {
 	}
 }
 
-``
+```
 
 the inner closure databaseName will create a database with that name and populate it with scripts defined by the
 script variable. You can have multiple database closures that will create multiple databases.
