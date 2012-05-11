@@ -37,7 +37,7 @@ task writeNewPom << {
 				}
 			}
 		}
-	}.writeTo("$buildDir/libs/${project.name}-${version}.xml")
+	}.writeTo("$buildDir/libs/${project.name}-${version}.pom")
 }
 
 build.doLast {
