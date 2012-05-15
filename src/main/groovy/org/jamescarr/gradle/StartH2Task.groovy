@@ -9,6 +9,8 @@ import org.gradle.api.logging.Logging
 public class StartH2Task extends DefaultTask{
 	static final Logger LOGGER = Logging.getLogger(StartH2Task.class)
 	def scripts = [:]
+	def ports = [:]
+	
 	String rootDir = "."
 
 	@TaskAction
@@ -29,11 +31,11 @@ public class StartH2Task extends DefaultTask{
 		
 	}
 	private void validateConfigurationAndStartServer(){
-		org.h2.tools.Server.main("-tcp", "-web")
+		org.h2.tools.Server.main("-tcp", "-web", "-tcpPort", ports.tcp, "-webPort", ports.web)
 		scripts.each { databaseName, scripts ->
 			new File("./${databaseName}.h2.db").delete()
 			scripts.each { script ->
-				org.h2.tools.RunScript.execute("jdbc:h2:tcp://localhost/${databaseName}", "sa", "", "${rootDir}/${script}", 'UTF-8', false)
+				org.h2.tools.RunScript.execute("jdbc:h2:tcp://localhost:#{ports.tcp}/${databaseName}", "sa", "", "${rootDir}/${script}", 'UTF-8', false)
 			}
 		}
 	}

@@ -22,6 +22,7 @@ class H2Plugin implements Plugin <Project>{
 		project.tasks.withType(StartH2Task).whenTaskAdded { StartH2Task task ->
 			project.gradle.taskGraph.whenReady {
 				task.scripts = convention.scripts
+				task.ports   = convention.ports
 				task.rootDir = project.buildFile.parentFile.absolutePath
 			}
 		}
