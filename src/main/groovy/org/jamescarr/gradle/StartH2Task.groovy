@@ -16,18 +16,7 @@ public class StartH2Task extends DefaultTask{
 	@TaskAction
 	void start(){
 		LOGGER.info "Configuring Tomcat for ${getProject()}"
-
-		ClassLoader originalClassLoader = getClass().classLoader
-		URLClassLoader h2ClassLoader = createH2ClassLoader()
-
-		try {
-			Thread.currentThread().contextClassLoader = h2ClassLoader
-			validateConfigurationAndStartServer()
-		}
-		finally {
-			Thread.currentThread().contextClassLoader = originalClassLoader
-		}
-
+		validateConfigurationAndStartServer()
 		
 	}
 	private void validateConfigurationAndStartServer(){
@@ -39,9 +28,5 @@ public class StartH2Task extends DefaultTask{
 			}
 		}
 	}
-	private URLClassLoader createH2ClassLoader(){
-		ClassLoader rootClassLoader = new AntClassLoader(getClass().classLoader, false)
-		URLClassLoader pluginClassloader = new URLClassLoader(toURLArray(getBuildscriptClasspath().files), rootClassLoader)
-		new URLClassLoader(toURLArray(getH2Classpath().files), pluginClassloader)
-	}
+	
 }
