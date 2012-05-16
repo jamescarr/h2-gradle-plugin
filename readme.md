@@ -24,7 +24,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'jamescarr:h2-gradle-plugin:0.8.0'
+        classpath 'jamescarr:h2-gradle-plugin:0.8.1'
         classpath 'com.h2database:h2:1.3.164'  // choose your own version
     }
 }
