@@ -19,15 +19,31 @@ class H2Plugin implements Plugin <Project>{
 	}
 
 	def configureH2Tasks(final Project project, final H2PluginConvention convention){
-		project.tasks.withType(StartH2Task).whenTaskAdded { StartH2Task task ->
-			project.gradle.taskGraph.whenReady {
-				task.scripts = convention.scripts
-				task.ports   = convention.ports
-				task.rootDir = project.buildFile.parentFile.absolutePath
-			}
-		}
-		StartH2Task h2Start = project.tasks.add(H2_START_TASK_NAME, StartH2Task)
-		h2Start.description = 'Starts an embedded h2 database.'
-		h2Start.group = "h2"
+		configureStartTask(project, convention)
+        configureStopTask(project, convention)
 	}
+
+
+    private void configureStopTask(project, convention){
+        project.tasks.withType(StopH2Task).whenTaskAdded { StopH2Task task ->
+            project.gradle.taskGraph.whenReady {
+                task.tcpPort   = convention.ports.tcp
+            }
+        }
+        StopH2Task h2Start = project.tasks.add("h2stop", StopH2Task)
+        h2Start.description = 'Stops an embedded h2 database.'
+        h2Start.group = "h2"
+    }
+    private void configureStartTask(project, convention){
+        project.tasks.withType(StartH2Task).whenTaskAdded { StartH2Task task ->
+            project.gradle.taskGraph.whenReady {
+                task.scripts = convention.scripts
+                task.ports   = convention.ports
+                task.rootDir = project.buildFile.parentFile.absolutePath
+            }
+        }
+        StartH2Task h2Start = project.tasks.add(H2_START_TASK_NAME, StartH2Task)
+        h2Start.description = 'Starts an embedded h2 database.'
+        h2Start.group = "h2"
+    }
 }

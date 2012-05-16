@@ -15,12 +15,11 @@ public class StartH2Task extends DefaultTask{
 
 	@TaskAction
 	void start(){
-		LOGGER.info "Configuring Tomcat for ${getProject()}"
 		validateConfigurationAndStartServer()
 		
 	}
 	private void validateConfigurationAndStartServer(){
-		org.h2.tools.Server.main("-tcp", "-web", "-tcpPort", ports.tcp, "-webPort", ports.web)
+		org.h2.tools.Server.main("-tcp", "-web", "-tcpPort", "${ports.tcp}", "-webPort", "${ports.web}")
 		scripts.each { databaseName, scripts ->
 			new File("./${databaseName}.h2.db").delete()
 			scripts.each { script ->

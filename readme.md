@@ -9,18 +9,10 @@ perfect for integration testing with embedded web containers.
 
 ## Usage
 
-To use the h2 plugin, include your in buildscript:
+To use the h2 plugin, include the following in your buildscript:
 
 ```groovy
 apply plugin: 'h2'
-
-```
-
-The plugin jars need to be defined in the classpath of your buildscript. You can either get the plugin jar and pom
-from the github download section or upload it to your own repository. Here's how you'd include it if resolving
-against github directly.
-
-```groovy
 
 buildscript {
     repositories {
@@ -28,6 +20,7 @@ buildscript {
             name = 'GitHub'
             addArtifactPattern 'http://cloud.github.com/downloads/[organisation]/[module]/[module]-[revision].[ext]'
         }
+        mavenCentral() // or alternatively your own maven resolver
     }
 
     dependencies {
@@ -100,3 +93,5 @@ tomcatRun.doFirst {
 }
 
 ```
+
+More to come.

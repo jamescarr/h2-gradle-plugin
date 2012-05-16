@@ -25,7 +25,7 @@ public class H2PluginTest {
 				scripts = ['a/b/c.sql']
 			}
 		}
-        plugin = new H2Plugin().apply(project) 
+        plugin = new H2Plugin().apply(project)
 	}
 	@After
 	void tearDown() {
