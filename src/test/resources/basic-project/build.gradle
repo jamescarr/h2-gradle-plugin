@@ -13,6 +13,7 @@ buildscript {
         props.load(new File('./gradle.properties').newInputStream())
         def currentVersion = props.getProperty('version')
 
+        println "VERSION IS " + currentVersion
 
         classpath "jamescarr:h2-gradle-plugin:${currentVersion}-SNAPSHOT"
         classpath 'com.h2database:h2:1.3.164'  // choose your own version
