@@ -1,4 +1,4 @@
 language: groovy
-install: gradle clean build
+install: gradle clean build --stacktrace
 notifications:
   email: true
