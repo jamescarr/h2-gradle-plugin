@@ -17,6 +17,7 @@ dependencies {
 	testCompile 'junit:junit:4.10'
 }
 
+println System.getProperty('release')
 if(!System.getProperty("release")){
 	version = "${version}-SNAPSHOT"
 }
