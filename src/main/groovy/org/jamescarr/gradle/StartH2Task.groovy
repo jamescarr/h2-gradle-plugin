@@ -23,7 +23,7 @@ public class StartH2Task extends DefaultTask{
 		scripts.each { databaseName, scripts ->
 			new File("./${databaseName}.h2.db").delete()
 			scripts.each { script ->
-				org.h2.tools.RunScript.execute("jdbc:h2:tcp://localhost:#{ports.tcp}/${databaseName}", "sa", "", "${rootDir}/${script}", 'UTF-8', false)
+				org.h2.tools.RunScript.execute("jdbc:h2:tcp://localhost:${ports.tcp}/${databaseName}", "sa", "", "${rootDir}/${script}", 'UTF-8', false)
 			}
 		}
 	}
